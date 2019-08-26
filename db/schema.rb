@@ -12,18 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2019_08_23_170054) do
 
-  create_table "patients", force: :cascade do |t|
-    t.string "name"
-    t.integer "age"
-    t.string "sex"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "result_sheets", force: :cascade do |t|
     t.string "doctor"
     t.datetime "date"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_result_sheets_on_user_id"
@@ -33,10 +28,18 @@ ActiveRecord::Schema.define(version: 2019_08_23_170054) do
     t.string "name"
     t.decimal "result"
     t.string "unit"
-    t.integer "result_sheet_id"
+    t.bigint "result_sheet_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["result_sheet_id"], name: "index_studies_on_result_sheet_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.string "sex"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "result_sheets", "users"

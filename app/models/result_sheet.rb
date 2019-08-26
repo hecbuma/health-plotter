@@ -1,5 +1,5 @@
 class ResultSheet < ApplicationRecord
-  belongs_to :patient
+  belongs_to :user
 
   has_many :studies
 
