@@ -15,6 +15,9 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'pdf-reader'
 gem 'bootstrap'
+gem 'haml'
+gem 'haml-rails'
+gem 'devise'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
