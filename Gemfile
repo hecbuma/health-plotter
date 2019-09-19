@@ -18,6 +18,7 @@ gem 'bootstrap'
 gem 'haml'
 gem 'haml-rails'
 gem 'devise'
+gem 'chartkick'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
