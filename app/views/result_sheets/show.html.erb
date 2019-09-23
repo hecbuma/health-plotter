@@ -1,0 +1,6 @@
+<div class="container">
+  <h5 class="card-title">Result Sheet <%=@result_sheet.date%></h5>
+  <% @result_sheet.studies.each do |study| %>
+    <h6 class="card-subtitle mb-2 text-muted"><%= study.name %></h6>
+  <% end if @result_sheet.studies %>
+<div>

@@ -1,0 +1,13 @@
+<div class='container'>
+  <% if current_user && @last_result_sheet %>
+    <h5 class="card-title">Result Sheet <%=@last_result_sheet&.date%></h5>
+    <h5 class="card-subtitle mb-2 text-muted"><%=@last_result_sheet.doctor%></h5>
+    <% @last_result_sheet.studies.each do |study| %>
+      <h6 class="card-subtitle mb-2 text-muted"><%= study.name %></h6>
+    <% end if @last_result_sheet.studies %>
+  <% else %>
+    <h2>Hacer bonito esto :v</h2>
+    <h2>What's Health Plotter?</h2>
+    <h2>Objetive </h2>
+  <% end %>
+</div>

@@ -1,0 +1,31 @@
+
+<div class="container">
+  <h5 class="card-title">Result Sheets</h5>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Doctor</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @result_sheets.each do |sheet| %>
+        <tr>
+          <th scope="row"><%= sheet.id %></th>
+          <td><%= sheet.date %></td>
+          <td><%= sheet.doctor %></td>
+          <td>
+            <%= link_to 'Show' , result_sheet_path(sheet), class: 'btn btn-primary' %>
+            <%= link_to 'Delete', result_sheet_path(sheet), method: :delete, class: 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% end if @result_sheets.present?%>
+    </tbody>
+  </table>
+
+  <%= link_to 'New', new_result_sheet_path, class: 'btn btn-primary' %>
+
+</div>

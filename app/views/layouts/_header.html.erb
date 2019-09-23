@@ -1,0 +1,16 @@
+<header>
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to 'Health Plotter', root_path %> </h5>
+    <% if current_user %>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <%= link_to 'Result Sheets', result_sheets_path, class: 'p-2 text-dark'%>
+        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-primary'%>
+      </nav>
+    <% else %>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <%= link_to 'Sign in', new_user_session_path, class: 'p-2 text-dark'%>
+      </nav>
+      <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-outline-primary'%>
+    <% end %>
+  </div>
+</header>
