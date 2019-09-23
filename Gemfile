@@ -18,7 +18,9 @@ gem 'bootstrap'
 gem 'haml'
 gem 'haml-rails'
 gem 'devise'
-gem 'chartkick'
+gem 'groupdate'
+gem 'jquery-rails'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
