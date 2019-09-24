@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   def index
     if current_user
-      @last_result_sheet = current_user&.result_sheets.last
+      @general_studies = general_studies(current_user.result_sheets)
     end
   end
 end

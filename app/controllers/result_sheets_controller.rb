@@ -23,7 +23,7 @@ class ResultSheetsController < ApplicationController
   end
   
   def show
-    @result_sheet = ResultSheet.find(result_sheet_params)
+    @result_sheet = ResultSheet.find(params[:id])
   end
 
   def destroy

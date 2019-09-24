@@ -18,7 +18,6 @@ gem 'bootstrap'
 gem 'haml'
 gem 'haml-rails'
 gem 'devise'
-gem 'groupdate'
 gem 'jquery-rails'
 
 

@@ -1,6 +1,9 @@
 <div class="container">
   <h5 class="card-title">Result Sheet <%=@result_sheet.date%></h5>
   <% @result_sheet.studies.each do |study| %>
-    <h6 class="card-subtitle mb-2 text-muted"><%= study.name %></h6>
+    <h6 class="card-subtitle mb-2 text-muted"><%= study.name %></h6><span><%= study.result %></span><hr>
   <% end if @result_sheet.studies %>
+    <%= column_chart @result_sheet.studies.map { |sheet|
+    {name: sheet.name, data: { result: sheet.result }}
+    } %>
 <div>
