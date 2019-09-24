@@ -1,0 +1,7 @@
+registered_user:
+  email: registered@user.com
+  encrypted_password: <%= User.new.send(:password_digest, "Password1") %>
+
+user_without_results:
+  email: user_without@user.com
+  encrypted_password: <%= User.new.send(:password_digest, "Password1") %>

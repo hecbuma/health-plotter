@@ -1,6 +1,9 @@
 class ResultSheetsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :load_user
+
   def index
-    @result_sheets = current_user.result_sheets
+    @result_sheets = @user.result_sheets
   end
 
   def new
@@ -9,11 +12,12 @@ class ResultSheetsController < ApplicationController
 
   def create
     @result_sheet = ResultSheet.new(result_sheet_params)
+
     if @result_sheet.save
       flash[:notice] = 'Result Sheet was succesfully create'
       render :show
     else
-      flash.now[:alert] = 'Please check the imputs'
+      flash.now[:alert] = 'Please check the inputs'
       render :new
     end
   end
@@ -35,6 +39,11 @@ class ResultSheetsController < ApplicationController
 
   private
   def result_sheet_params
-    params.require(:result_sheet).permit(:doctor, :date, :document)
+    params.require(:result_sheet)
+      .permit(:doctor, :date, :document).merge(user_id: @user.id)
+  end
+
+  def load_user
+    @user = current_user
   end
 end
