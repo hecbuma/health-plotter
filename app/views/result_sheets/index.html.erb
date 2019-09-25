@@ -1,8 +1,8 @@
 
-<div class="container">
-  <h5 class="card-title">Result Sheets</h5>
+<div class="container is-widescreen ">
+  <p class="title is-3">Result Sheets</p>
 
-  <table class="table">
+  <table class="table is-fullwidth is-striped is-narrow is-hoverable">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -18,14 +18,14 @@
           <td><%= sheet.date %></td>
           <td><%= sheet.doctor %></td>
           <td>
-            <%= link_to 'Show' , result_sheet_path(sheet), class: 'btn btn-primary' %>
-            <%= link_to 'Delete', result_sheet_path(sheet), method: :delete, class: 'btn btn-danger' %>
+            <%= link_to 'Show' , result_sheet_path(sheet), class: 'button is-primary' %>
+            <%= link_to 'Delete', result_sheet_path(sheet), method: :delete, class: 'button is-danger' %>
           </td>
         </tr>
       <% end if @result_sheets.present?%>
     </tbody>
   </table>
 
-  <%= link_to 'New', new_result_sheet_path, class: 'btn btn-primary' %>
+  <%= link_to 'New', new_result_sheet_path, class: 'button is-primary' %>
 
 </div>

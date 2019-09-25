@@ -1,17 +1,17 @@
-<div class="container">
-  <h5 class="card-title">New Result Sheet</h5>
+<div class="container is-widescreen ">
+  <p class="title is-3">New Result Sheet</p>
   <%= form_with(model: @result_sheet, local: true) do |f|%>
-    <div class="form-group">
+    <div class="field">
       <%= f.label :doctor %>
-      <%= f.text_field :doctor, class: 'form-control', placeholder: 'Doctor Name'%>
+      <%= f.text_field :doctor, class: 'input', placeholder: 'Doctor Name'%>
     </div>
 
-    <div class="form-group">
+    <div class="field">
       <div class="custom-file">
         <%= f.file_field :document, required: true, class: 'custom-file-input'%>
         <%= f.label :document, class: 'custom-file-label'%>
       </div>
     </div>
-    <%= f.submit 'Create', class:'btn btn-primary' %>
+    <%= f.submit 'Create', class:'button is-primary' %>
   <% end %>
 </div>

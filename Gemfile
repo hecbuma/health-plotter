@@ -14,7 +14,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'chartkick'
 gem 'groupdate'
 gem 'pdf-reader'
-gem 'bootstrap'
 gem 'haml'
 gem 'haml-rails'
 gem 'devise'

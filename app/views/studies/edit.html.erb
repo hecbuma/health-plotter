@@ -1,0 +1,27 @@
+<div class="container ">
+  <p class="title is-3">Edit Result</p>
+  <%= form_with(model: @study, local: true) do |f|%>
+    <div class="field">
+      <%= f.label :name, class: 'label' %>
+      <div class="control">
+        <%= f.text_field :name, class: 'input', placeholder: 'Name'%>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :result, class: 'label'%>
+      <div class="control">
+        <%= f.text_field :result, class: 'input', placeholder: 'result'%>
+      </div>     
+    </div>
+
+    <div class="field">
+      <%= f.label :unit, class: 'label'%>
+      <div class="control">
+        <%= f.text_field :unit, class: 'input', placeholder: 'unit'%>
+      </div>
+    </div>
+
+    <%= f.submit 'Save', class:'button is-primary' %>
+  <% end %>
+</div>
