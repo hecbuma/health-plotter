@@ -14,6 +14,8 @@ class ResultSheetProcessor
     build_values_hash(lines).each do |study|
       result_sheet.studies.create study
     end
+
+    notify_user(result_sheet)
   end
 
   def self.download_file(result_sheet)
@@ -48,5 +50,9 @@ class ResultSheetProcessor
       next if parts[0].match(LINE_EXCLUTION)
       result << {name: parts[0], result: parts[1], unit: parts[2], range: parts[3]}
     end
+  end
+
+  def self.notify_user(result_sheet)
+    NotificationMailer.with(result_sheet: result_sheet).results_ready.deliver_later
   end
 end
