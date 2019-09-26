@@ -1,5 +1,7 @@
-<div class="container is-widescreen ">
-  <p class="title is-3">Result Sheet <%=@result_sheet.date%></p>
+<div class="container container-margin ">
+  <p class="title is-3 has-text-link">Result Sheet <%=@result_sheet.date%>
+    <%= link_to 'Back', :back, class: 'button is-danger is-outlined'%>
+  </p>
 
   <table class="table is-fullwidth is-striped is-narrow is-hoverable">
     <thead>
@@ -15,7 +17,7 @@
           <td><%= study.name %></td>
           <td class='has-text-danger'><%= study.result %></td>
           <td>
-            <%= link_to 'Edit', edit_study_path(study), class: 'button is-primary' %>
+            <%= link_to 'Edit', edit_study_path(study), class: 'button is-link' %>
             <%= link_to 'delete', study_path(study), method: :delete, class: 'button is-danger' %>
           </td>
         </tr>

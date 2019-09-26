@@ -1,9 +1,9 @@
-<div class="container is-widescreen ">
+<div class="container container-margin ">
   <p class="title is-3">New Result Sheet</p>
   <%= form_with(model: @result_sheet, local: true) do |f|%>
     <div class="field">
       <%= f.label :doctor %>
-      <%= f.text_field :doctor, class: 'input', placeholder: 'Doctor Name'%>
+      <%= f.text_field :doctor, class: 'input is-link is-rounded', placeholder: 'Doctor Name'%>
     </div>
 
     <div class="field">
@@ -12,6 +12,6 @@
         <%= f.label :document, class: 'custom-file-label'%>
       </div>
     </div>
-    <%= f.submit 'Create', class:'button is-primary' %>
+    <%= f.submit 'Create', class:'button is-link' %>
   <% end %>
 </div>

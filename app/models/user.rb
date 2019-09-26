@@ -17,4 +17,5 @@ class User < ApplicationRecord
          :validatable
 
   has_many :result_sheets
+  has_many :studies, through: :result_sheets
 end

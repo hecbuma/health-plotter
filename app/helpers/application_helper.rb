@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def results(studies)
-    studies.map { |study| {name: study.result_sheet.date, data: {"#{study.created_at}": study.result}}}
+    studies.map {|study| [study.created_at, study.result]}
   end
 end

@@ -1,4 +1,4 @@
-<div class="container is-widescreen ">
+<div class="container container-margin">
   <p class="title is-3 text-center font-weight-light text-info">Change your password</p>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
@@ -10,16 +10,16 @@
       <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em><br />
       <% end %>
-      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'input' %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'input is-link is-rounded' %>
     </div>
 
     <div class="field">
       <%= f.label :password_confirmation, "Confirm new password" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input'%>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input is-link is-rounded'%>
     </div>
 
     <div class="actions">
-      <%= f.submit "Change my password",  class: 'button is-primary is-fullwidth' %>
+      <%= f.submit "Change my password",  class: 'button is-rounded is-link is-fullwidth' %>
     </div>
   <% end %>
 

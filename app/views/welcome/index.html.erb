@@ -1,12 +1,71 @@
-<div class='container is-widescreen '>
+<div class='container container-margin'>
   <% if current_user && @general_studies %>
     <p class="title is-3">General Results </p>
-    <% names_uniq(@general_studies).each do |study_name|%>
-      <%= link_to study_name, studies_path(study_name: study_name) %><hr>
-    <% end %>
+    <div class='container'>
+      <p class='has-text-link'>Search type of Study</p>
+      <div class='search box'>
+        <div class="field">
+          <div class="control">
+            <%= form_for :search, url: root_path, method: :get do |f|%>
+              <%=f.text_field :search, label: false, placeholder: 'Search', class: 'input is-link is-rounded'%>
+              <%= f.submit 'Search', class:'button is-link is-rounded'%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="field is-grouped box is-grouped-multiline">
+      <% if @general_studies.blank? %>
+        <p>No results</p>
+      <% else %>
+        <% names_uniq(@general_studies).each do |study_name|%>
+          <div class="control">
+            <div class="tags has-addons">
+              <%= link_to study_name, studies_path(study_name: study_name), class: 'tag is-link' %>
+              <a class="tag is-delete"></a>
+            </div>
+          </div>
+        <% end %>
+
+      <% end %>
+    </div>
   <% else %>
-    <p>Hacer bonito esto :v</p>
-    <p>What's Health Plotter?</p>
-    <p>Objetive </p>
+    <div class='custom-container-welcome'>
+      <div class="tile is-ancestor">
+        <div class="tile is-vertical">
+          <div class="tile">
+            <div class="tile is-parent is-vertical">
+              <article class="tile is-child">
+                <p class="title is-1 has-text-link	">Health Plotter</p>
+                <p class="subtitle is-6 has-text-link	">Todos tus laboratorios en un solo lugar</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tile is-ancestor">
+      <div class="tile is-parent">
+        <article class="tile is-child has-background-grey-lighter	 box">
+          <figure class="image is-2by3 ">
+            <%= image_tag 'cloud-computing.svg' %>
+          </figure>
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child has-background-warning box">
+          <figure class="image is-2by3 ">
+            <%= image_tag 'line-chart.svg', class: '' %>
+          </figure>
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child has-background-primary box">
+          <figure class="image is-2by3 ">
+            <%= image_tag 'save.svg' %>
+          </figure>
+        </article>
+      </div>
+    </div>
   <% end %>
 </div>
