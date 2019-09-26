@@ -6,7 +6,7 @@ class StudiesController < ApplicationController
         @studies += [study] if study.name == params[:study_name]
       end
     end
-    @studies 
+    @studies
   end
 
   def edit
@@ -22,7 +22,7 @@ class StudiesController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @study = Study.find(params[:id])
     if @study.destroy()
