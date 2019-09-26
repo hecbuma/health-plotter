@@ -14,6 +14,8 @@ class ResultSheetsController < ApplicationController
     @result_sheet = ResultSheet.new(result_sheet_params)
 
     if @result_sheet.save
+      ResultSheetProcessor.parse_file_later(@result_sheet)
+
       flash[:notice] = 'Result Sheet was succesfully create'
       render :show
     else
@@ -21,7 +23,7 @@ class ResultSheetsController < ApplicationController
       render :new
     end
   end
-  
+
   def show
     @result_sheet = ResultSheet.find(params[:id])
   end

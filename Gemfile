@@ -18,8 +18,10 @@ gem 'haml'
 gem 'haml-rails'
 gem 'devise'
 gem 'jquery-rails'
-gem "bulma-rails", "~> 0.7.5"
+gem 'sidekiq'
 gem 'pg_search'
+gem "bulma-rails", "~> 0.7.5"
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -29,6 +31,7 @@ end
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen'
+  gem 'letter_opener'
 end
 
 group :test do
