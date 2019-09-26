@@ -18,6 +18,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'devise'
 gem 'jquery-rails'
+gem 'sidekiq'
 
 
 group :development, :test do
