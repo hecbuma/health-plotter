@@ -1,4 +1,8 @@
+  
 <div class="container ">
+  <figure class="image is-64x64">
+    <%= link_to image_tag('logo.png'), root_path %>
+  </figure>
   <div class='container-margin'>
     <p class="title is-3 font-weight-light has-text-link">Log in</p>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

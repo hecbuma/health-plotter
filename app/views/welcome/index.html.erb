@@ -1,6 +1,6 @@
 <div class='container container-margin'>
   <% if current_user && @general_studies %>
-    <p class="title is-3">General Results </p>
+    <p class="title is-3 has-text-link">General Results </p>
     <div class='container'>
       <p class='has-text-link'>Search type of Study</p>
       <div class='search box'>
@@ -21,8 +21,7 @@
         <% names_uniq(@general_studies).each do |study_name|%>
           <div class="control">
             <div class="tags has-addons">
-              <%= link_to study_name, studies_path(study_name: study_name), class: 'tag is-link' %>
-              <a class="tag is-delete"></a>
+              <%= link_to study_name, studies_path(study_name: study_name), class: "tag is-rounded #{(random_color)}" %>
             </div>
           </div>
         <% end %>
@@ -30,13 +29,16 @@
       <% end %>
     </div>
   <% else %>
+    <figure class="image is-64x64">
+      <%= link_to image_tag('logo.png'), new_user_session_path %>
+    </figure>
     <div class='custom-container-welcome'>
       <div class="tile is-ancestor">
         <div class="tile is-vertical">
           <div class="tile">
             <div class="tile is-parent is-vertical">
               <article class="tile is-child">
-                <p class="title is-1 has-text-link	">Health Plotter</p>
+                <h1 class="title is-1 has-text-link	">Health Plotter</h1>
                 <p class="subtitle is-6 has-text-link	">Todos tus laboratorios en un solo lugar</p>
               </article>
             </div>
@@ -46,21 +48,21 @@
     </div>
     <div class="tile is-ancestor">
       <div class="tile is-parent">
-        <article class="tile is-child has-background-grey-lighter	 box">
+        <article class="tile is-child has-background-grey-lighter	 box custom-border">
           <figure class="image is-2by3 ">
             <%= image_tag 'cloud-computing.svg' %>
           </figure>
         </article>
       </div>
       <div class="tile is-parent">
-        <article class="tile is-child has-background-warning box">
+        <article class="tile is-child has-background-warning box custom-border">
           <figure class="image is-2by3 ">
             <%= image_tag 'line-chart.svg', class: '' %>
           </figure>
         </article>
       </div>
-      <div class="tile is-parent">
-        <article class="tile is-child has-background-primary box">
+      <div class="tile is-parent custom-border">
+        <article class="tile is-child has-background-primary box custom-border">
           <figure class="image is-2by3 ">
             <%= image_tag 'save.svg' %>
           </figure>

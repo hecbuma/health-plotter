@@ -18,3 +18,11 @@ require("chart.js")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+document.addEventListener('DOMContentLoaded', () => {
+  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+    $notification = $delete.parentNode;
+    $delete.addEventListener('click', () => {
+      $notification.parentNode.removeChild($notification);
+    });
+  });
+});

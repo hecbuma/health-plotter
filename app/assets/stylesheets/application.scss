@@ -24,12 +24,7 @@
  }
 
 .header-icon {
-  width: 25%;
-}
-
-.custom-color{
-  background: $green-first;
-
+  max-width: 45%;
 }
 
 .custom-container-welcome {
@@ -40,4 +35,10 @@
 
 .container-margin {
   margin: 5em;
+  min-height: 25em;
 }
+
+.custom-border {
+  border-radius: 2em;
+}
+
