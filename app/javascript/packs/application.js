@@ -9,7 +9,6 @@ require("@rails/activestorage").start()
 require("channels")
 require("chartkick")
 require("chart.js")
-require('../css/application')
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -19,3 +18,11 @@ require('../css/application')
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+document.addEventListener('DOMContentLoaded', () => {
+  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+    $notification = $delete.parentNode;
+    $delete.addEventListener('click', () => {
+      $notification.parentNode.removeChild($notification);
+    });
+  });
+});

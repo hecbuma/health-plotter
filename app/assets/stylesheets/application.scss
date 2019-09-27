@@ -13,3 +13,32 @@
  *= require_tree .
  *= require_self
  */
+ @import "bulma";
+ @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+ $green-first: #A3E4D7;
+ $blue-custom: #0356DD;
+ 
+ body {
+  font-family: 'Open Sans', sans-serif;
+ }
+
+.header-icon {
+  max-width: 45%;
+}
+
+.custom-container-welcome {
+  margin-bottom: 18em;
+  margin-top: 18em;
+  margin-left: 2em;
+}
+
+.container-margin {
+  margin: 5em;
+  min-height: 25em;
+}
+
+.custom-border {
+  border-radius: 2em;
+}
+

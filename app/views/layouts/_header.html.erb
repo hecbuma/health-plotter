@@ -1,29 +1,27 @@
+
 <header>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar  has-background-light" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <%= link_to 'Health Plotter', root_path %>
+      <p class='has-text-white'><%= link_to image_tag('logo-name.png',class: 'header-icon'), root_path %></p>
     </div>
     <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <% if current_user %>
-          <nav class="navbar-item">
-            <%= link_to 'Result Sheets', result_sheets_path %>
-          </nav>
-        <% end %>
-        </div>
-      </div>
       <div class="navbar-end">
         <div class="navbar-item">
+          <%= link_to image_tag('loupe.svg'), root_path, class: 'image is-32x32'%>
+        </div>
+        <div class="navbar-item">
+          <%= link_to image_tag('cloud-computing.svg'), new_result_sheet_path	, class: 'image is-32x32'%>
+        </div>
+        <div class="navbar-item">
+          <%= link_to image_tag('results.svg'), result_sheets_path, class: 'image is-32x32'%>
+        </div>
+        <div class="navbar-item">
           <div class="buttons">
-            <% if current_user%>
-              <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'button is-danger is-outlined'%>
-            <% else %>
-              <%= link_to 'Sign up', new_user_registration_path, class: 'button is-primary'%>
-              <%= link_to 'Sign in', new_user_session_path, class: 'button is-light'%>
-            <% end %>
+            <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'button is-danger is-outlined is-rounded'%>
           </div>
         </div>
       </div>
     </div>
   </nav>
 </header>
+ 

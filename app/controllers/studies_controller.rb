@@ -2,7 +2,7 @@ class StudiesController < ApplicationController
   def index
     if params[:study_name]
       @studies = []
-      general_studies(current_user.result_sheets).each do |study|
+      current_user.studies.each do |study|
         @studies += [study] if study.name == params[:study_name]
       end
     end

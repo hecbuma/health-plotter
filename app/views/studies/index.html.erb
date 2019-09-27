@@ -1,6 +1,8 @@
-<div class='container is-widescreen '>
-    <p class="title is-3">Results for <%=@studies.first.name%></p>
-    <%= line_chart results(@studies), download: {filename: "#{@studies.first.name}", background: "#ffffff"} %>
+<div class='container container-margin '>
+  <%= link_to 'Back', :back, class: 'button is-danger is-outlined'%> <br></br>
+  <p class="title is-3 has-text-link"><%=@studies.first.name.capitalize%> Results</p>
+    
+  <%= area_chart results(@studies), download: {filename: "#{@studies.first.name}", background: "#ffffff"}, title: "#{@studies.first.name.capitalize} results" %>
 
   <table class="table is-fullwidth is-striped is-narrow is-hoverable">
     <thead>

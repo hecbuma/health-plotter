@@ -1,17 +1,21 @@
-<div class="container is-widescreen ">
-  <p class="title is-3">New Result Sheet</p>
+<div class="container container-margin ">
+  <p class="title is-3 has-text-link">New Result Sheet</p>
   <%= form_with(model: @result_sheet, local: true) do |f|%>
     <div class="field">
       <%= f.label :doctor %>
-      <%= f.text_field :doctor, class: 'input', placeholder: 'Doctor Name'%>
+      <%= f.text_field :doctor, class: 'input is-link is-rounded', placeholder: 'Doctor Name'%>
     </div>
 
     <div class="field">
-      <div class="custom-file">
-        <%= f.file_field :document, required: true, class: 'custom-file-input'%>
-        <%= f.label :document, class: 'custom-file-label'%>
-      </div>
+      <%= f.label :date %>
+      <%= f.date_field :date, class: 'input is-link is-rounded', placeholder: 'Date'%>
     </div>
-    <%= f.submit 'Create', class:'button is-primary' %>
+
+    <div class="field">
+      <%= f.label :document %>
+      <%= f.file_field :document, required: true, class: 'is-right is-link box button'%>
+    </div>
+
+    <%= f.submit 'Create', class:'button is-link' %>
   <% end %>
 </div>
