@@ -4,6 +4,15 @@ UNITS_PATTERNS = %r{x10\^6/uL|g/dL|\%|fL|pg|x10\^3/µL|UI/L|mg/d|U/L|mmol/L|ml|m
 LINE_EXCLUTION = /En el limite de nivel|Conveniente|para diabetes|Conveniente:|Elevado:|\d/.freeze
 TESTS_PATTERNS = /albumina-en-suero|biometria-hematica|quimica-clinica|proteinas-en-orina-de-24-horas|inmologia|quimica-de-\d-elementos/.freeze
 METAS_PATTERNS = /paciente|sexo|fecha|dirigido|doctor/i.freeze
+META_PATTERN_WHITELIST = /^paciente$|sexo|edad|fecha$|diagnostico-presuntivo|fecha-y-hora-de-registro|doctor|dirigido-a/
+RESULT_SHEET_ATTRS = {paciente: :patient,
+                      'diagnostico-presuntivo': :diagnosis,
+                      edad: :age,
+                      doctor: :doctor,
+                      sexo: :sex,
+                      'fecha-y-hora-de-registro': :date,
+                      fecha: :date,
+                      'dirigido-a': :doctor}
 
 class ResultSheetProcessor
   def self.parse_file_later(result_sheet)
@@ -17,6 +26,8 @@ class ResultSheetProcessor
       result_sheet.studies.create study
     end
 
+    result_sheet.update build_metadata_values_hash(lines)
+  
     notify_user(result_sheet)
   end
 
@@ -50,31 +61,31 @@ class ResultSheetProcessor
   def self.build_studies_values_hash(lines)
     values_hash = lines[:study_lines].each_with_object([]) do |line, result|
       parts = line.strip.split(/\s\s/).reject(&:empty?)
-      next if parts[1].nil?
-      next if parts[1].match(LINE_EXCLUTION)
+      next if parts[1].nil? || parts[1].match(LINE_EXCLUTION)
 
       result << { name: parts[1], result: parts[2], unit: parts[3], range: parts[4], group: parts[0] }
     end
   end
 
-  # TODO: Get metadata hash
   def self.build_metadata_values_hash(lines)
-    metadata_lines = lines[:metadata_lines].each_with_object([]) do |meta, _result|
-      lines << meta.split(/\s\s\s\s\s\s\s\s\s/)
+    metadata_lines = lines[:metadata_lines].each_with_object([]) do |meta, result|
+      result << meta.split(/\s\s\s\s\s\s\s\s\s/)
     end
 
     metas = metadata_lines.flatten.reject(&:empty?).each_with_object([]) do |meta, result|
-      parts = metas.strip.split(/:\s|\s:\s/).reject(&:empty?)
-      result << meta
+      parts = meta.strip.split(/:\s|\s:\s/).reject(&:empty?)
+      result << parts
     end
 
-    hash = {}
-    metas.each do |key, value|
+    hash = metas.each_with_object({}) do |(key, value), result|
       key = key.parameterize
-      hash.merge!("#{key}": value) if key.match(/paciente|sexo|edad|fecha/)
+      if key.match(META_PATTERN_WHITELIST)
+        key = RESULT_SHEET_ATTRS[key.to_sym]
+        next if result.keys.include?(key) || key.blank?
+        value = value.scan(/\d*/)[0] if key == :age
+        result.merge!("#{key}": value&.strip&.downcase)
+      end
     end
-
-    hash
   end
 
   def self.notify_user(result_sheet)
