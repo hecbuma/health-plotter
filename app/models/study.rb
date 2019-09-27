@@ -17,4 +17,6 @@ class Study < ApplicationRecord
   belongs_to :result_sheet
   include PgSearch
   pg_search_scope :search_by_name, against: :name
+
+  scope :by_group, -> (group_name) { where(group: group_name)}
 end

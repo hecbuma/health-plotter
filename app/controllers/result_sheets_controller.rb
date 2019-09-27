@@ -13,7 +13,7 @@ class ResultSheetsController < ApplicationController
   end
 
   def create
-    @result_sheet = ResultSheet.new(result_sheet_params)
+    @result_sheet = @user.result_sheets.new(result_sheet_params)
 
     if @result_sheet.save
       ResultSheetProcessor.parse_file_later(@result_sheet)
@@ -27,11 +27,11 @@ class ResultSheetsController < ApplicationController
   end
 
   def show
-    @result_sheet = ResultSheet.find(params[:id])
+    @result_sheet = @user.result_sheets.find(params[:id])
   end
 
   def destroy
-    @result_sheet = ResultSheet.find(params[:id])
+    @result_sheet = @user.result_sheets.find(params[:id])
 
     if @result_sheet.destroy
       flash[:notice] = 'Sheet was succesfully deleted'
