@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StudiesController < ApplicationController
   def index
     if params[:study_group]
@@ -25,7 +27,7 @@ class StudiesController < ApplicationController
 
   def destroy
     @study = Study.find(params[:id])
-    if @study.destroy()
+    if @study.destroy
       redirect_to result_sheet_path(@study.result_sheet_id), notice: 'Study was successfully deleted.'
     else
       flash.now[:alert] = 'Study not deleted'
@@ -33,6 +35,7 @@ class StudiesController < ApplicationController
   end
 
   private
+
   def study_params
     params.require(:study).permit(:name, :result, :unit, :result_sheet_id)
   end

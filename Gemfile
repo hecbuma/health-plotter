@@ -1,37 +1,39 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-gem 'rails', '~> 6.0.0'
-gem 'pg'
-gem 'puma', '~> 3.11'
-gem 'sass-rails', '~> 5'
-gem 'webpacker', '~> 4.0'
-gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bulma-rails', '~> 0.7.5'
 gem 'chartkick'
+gem 'devise'
 gem 'groupdate'
-gem 'pdf-reader'
 gem 'haml'
 gem 'haml-rails'
-gem 'devise'
+gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
-gem 'sidekiq'
+gem 'pdf-reader'
+gem 'pg'
 gem 'pg_search'
-gem "bulma-rails", "~> 0.7.5"
-
+gem 'puma', '~> 3.11'
+gem 'rails', '~> 6.0.0'
+gem 'rubocop-rails'
+gem 'sass-rails', '~> 5'
+gem 'sidekiq'
+gem 'turbolinks', '~> 5'
+gem 'webpacker', '~> 4.0'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-rails'
 end
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen'
   gem 'letter_opener'
+  gem 'listen'
+  gem 'web-console', '>= 3.3.0'
 end
 
 group :test do
@@ -40,4 +42,4 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

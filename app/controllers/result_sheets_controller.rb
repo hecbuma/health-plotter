@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ResultSheetsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_user
@@ -40,9 +42,10 @@ class ResultSheetsController < ApplicationController
   end
 
   private
+
   def result_sheet_params
     params.require(:result_sheet)
-      .permit(:doctor, :date, :document).merge(user_id: @user.id)
+          .permit(:doctor, :date, :document).merge(user_id: @user.id)
   end
 
   def load_user
