@@ -1,6 +1,6 @@
 module ApplicationHelper
   def names_uniq(general_studies)
-    general_studies.map(&:name).uniq
+    general_studies.map(&:group).uniq
   end
 
   def results(studies)

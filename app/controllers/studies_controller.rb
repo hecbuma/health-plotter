@@ -1,9 +1,9 @@
 class StudiesController < ApplicationController
   def index
-    if params[:study_name]
+    if params[:study_group]
       @studies = []
       current_user.studies.each do |study|
-        @studies += [study] if study.name == params[:study_name]
+        @studies += [study] if study.group == params[:study_group]
       end
     end
     @studies

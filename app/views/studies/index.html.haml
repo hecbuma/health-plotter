@@ -1,0 +1,17 @@
+.container.container-margin
+  = link_to 'Back', :back, class: 'button is-danger is-outlined'
+  %br/
+  %p.title.is-3.has-text-link
+    = @studies.first.name.capitalize
+    Results
+  = area_chart results(@studies), download: {filename: "#{@studies.first.name}", background: "#ffffff"}, title: "#{@studies.first.name.capitalize} results"
+  %table.table.is-fullwidth.is-striped.is-narrow.is-hoverable
+    %thead
+      %tr
+        %th{:scope => "col"} Date
+        %th{:scope => "col"} Result
+    %tbody
+      - @studies.each do |study|
+        %tr
+          %td= study.result_sheet.date
+          %td.has-text-danger= study.result

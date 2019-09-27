@@ -1,0 +1,24 @@
+.container
+  %figure.image.is-64x64
+    = link_to image_tag('logo.png'), root_path
+  .container-margin
+    %p.title.is-3.font-weight-light.has-text-link Log in
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .field
+        = f.label :email
+        %br/
+        = f.email_field :email, autofocus: true, class: 'input is-link is-rounded', autocomplete: "email"
+      .field
+        = f.label :password
+        %br/
+        = f.password_field :password, autocomplete: "current-password", class: 'input is-link is-rounded'
+      - if devise_mapping.rememberable?
+        .field
+          .control
+            = f.check_box :remember_me, class: 'checkbox'
+            = f.label :remember_me, class:"checkbox"
+      .field
+        .control
+          = f.submit "Log in", class: 'button is-rounded is-link is-fullwidth'
+          %div
+          = render "devise/shared/links"
