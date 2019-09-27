@@ -1,0 +1,17 @@
+%div{:style => " margin: 0 auto; height: 37px; max-width: 602px; background-color: #3273dc;"}
+%div{:style => "background-color: #FFFFFF; border: 1px solid #3273dc; margin: 0 auto; max-width: 600px; text-align: center;"}
+  = image_tag 'logo-name.png', :style =>"height: 56px;	width: 300px;"
+  %br/
+  %div{:style => "margin: auto; margin-left: 15px; margin-right: 15px; margin-bottom: 70px; margin-top: 30px;"}
+    %h1{:style => "color: #4A4A4A; font-family: Tahoma; font-size: 24px;"}
+      Hello #{@result_sheet.user.email}
+    %br/
+    %div{:style => "margin: auto; max-width: 480px;"}
+      %p{:style => "color: #4A4A4A;\tfont-family: Tahoma; font-size: 15px; line-height: 24px;"}
+        Your latest results are
+        %span{:style => "color: #4A4A4A;\tfont-family: Tahoma; font-size: 15px; font-weight: bold; line-height: 24px;"} Ready
+    = link_to 'Check your results here!',  new_user_session_url(), :style =>"align-items: center; background-color: #3273dc;                                                                    |
+      color: #FFFFFF; cursor: pointer; display: flex; font-family: Tahoma; font-weight: bold; font-size: 14px; height: 20px; letter-spacing: 1px;                                               |
+      margin: auto; margin-bottom: 20px; border-radius: 10px; margin-top: 20px; padding: 13px 0 13px 10px; text-align: center; text-decoration: none; text-transform: uppercase; width: 237px;" |
+  %div{:style => "background-color: #DDEAFF; height: 56px;\tmargin: auto; text-align: center;"}
+    %p{:style => "color: #3273dc;\tfont-family: Tahoma; font-size: 13px; padding-top: 18px;"} Derechos reservados Health Plotter

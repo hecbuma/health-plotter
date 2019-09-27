@@ -1,0 +1,21 @@
+.container.container-margin
+  = link_to 'Back', :back, class: 'button is-danger is-outlined'
+  %br/
+  %p.title.is-3.has-text-link
+    Result Sheet #{@result_sheet.date}
+  %table.table.is-fullwidth.is-striped.is-narrow.is-hoverable
+    %thead
+      %tr
+        %th{:scope => "col"} Name
+        %th{:scope => "col"} Result
+        %th{:scope => "col"} Actions
+    %tbody
+      - @result_sheet.studies.each do |study|
+        %tr
+          %td= study.name
+          %td.has-text-danger= study.result
+          %td
+            = link_to 'Edit', edit_study_path(study), class: 'button is-link'
+            = link_to 'delete', study_path(study), method: :delete, class: 'button is-danger'
+      - end if @result_sheet.studies
+  %div

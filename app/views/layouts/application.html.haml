@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title HealthPlotter
+    = csrf_meta_tags
+    = csp_meta_tag
+    = favicon_link_tag 'logo-fondo.png'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+  %body
+    = render 'layouts/header' if current_user
+    - if notice
+      .notification.is-link
+        %button.delete
+        = notice
+    - if alert
+      .notification.is-danger
+        %button.delete
+        = alert
+    = yield
+    = render 'layouts/footer' if current_user

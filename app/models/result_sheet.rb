@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: result_sheets
@@ -13,7 +15,7 @@
 class ResultSheet < ApplicationRecord
   belongs_to :user
 
-  has_many :studies
+  has_many :studies, dependent: :destroy
 
   has_one_attached :document
 end

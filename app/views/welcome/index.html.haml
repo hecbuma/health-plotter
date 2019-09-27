@@ -1,0 +1,43 @@
+.container.container-margin
+  - if current_user && @general_studies
+    %p.title.is-3.has-text-link General Results
+    .container
+      %p.has-text-link Search type of Study
+      .search.box
+        .field
+          .control
+            = form_for :search, url: root_path, method: :get do |f|
+              = f.text_field :search, label: false, placeholder: 'Search', class: 'input is-link is-rounded'
+              = f.submit 'Search', class:'button is-link is-rounded'
+    .field.is-grouped.box.is-grouped-multiline
+      - if @general_studies.blank?
+        %p No results
+      - else
+        - names_uniq(@general_studies).each do |study_group|
+          .control
+            .tags.has-addons
+              = link_to study_group, studies_path(study_group: study_group), class: "tag is-rounded #{(random_color)}"
+  - else
+    %figure.image.is-64x64
+      = link_to image_tag('logo.png'), new_user_session_path
+    .custom-container-welcome
+      .tile.is-ancestor
+        .tile.is-vertical
+          .tile
+            .tile.is-parent.is-vertical
+              %article.tile.is-child
+                %h1.title.is-1.has-text-link Health Plotter
+                %p.subtitle.is-6.has-text-link Todos tus laboratorios en un solo lugar
+    .tile.is-ancestor
+      .tile.is-parent
+        %article.tile.is-child.has-background-grey-lighter.box.custom-border
+          %figure.image.is-2by3
+            = image_tag 'cloud-computing.svg'
+      .tile.is-parent
+        %article.tile.is-child.has-background-warning.box.custom-border
+          %figure.image.is-2by3
+            = image_tag 'line-chart.svg', class: ''
+      .tile.is-parent.custom-border
+        %article.tile.is-child.has-background-primary.box.custom-border
+          %figure.image.is-2by3
+            = image_tag 'save.svg'

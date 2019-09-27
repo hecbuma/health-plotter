@@ -1,0 +1,16 @@
+.container.container-margin
+  %p.title.is-3.has-text-link Edit Result
+  = form_with(model: @study, local: true) do |f|
+    .field
+      = f.label :name, class: 'label'
+      .control
+        = f.text_field :name, class: 'input is-link is-rounded', placeholder: 'Name'
+    .field
+      = f.label :result, class: 'label'
+      .control
+        = f.text_field :result, class: 'input is-link is-rounded', placeholder: 'result'
+    .field
+      = f.label :unit, class: 'label'
+      .control
+        = f.text_field :unit, class: 'input is-link is-rounded', placeholder: 'unit'
+    = f.submit 'Save', class:'button is-link'
