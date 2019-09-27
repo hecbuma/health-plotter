@@ -2,12 +2,6 @@
   %p.title.is-3.has-text-link New Result Sheet
   = form_with(model: @result_sheet, local: true) do |f|
     .field
-      = f.label :doctor
-      = f.text_field :doctor, class: 'input is-link is-rounded', placeholder: 'Doctor Name'
-    .field
-      = f.label :date
-      = f.date_field :date, class: 'input is-link is-rounded', placeholder: 'Date'
-    .field
       = f.label :document
       = f.file_field :document, required: true, class: 'is-right is-link box'
     = f.submit 'Create', class:'button is-rounded is-link'
