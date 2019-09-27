@@ -27,7 +27,7 @@ class ResultSheetProcessor
     end
 
     result_sheet.update build_metadata_values_hash(lines)
-  
+
     notify_user(result_sheet)
   end
 
@@ -81,8 +81,8 @@ class ResultSheetProcessor
       key = key.parameterize
       if key.match(META_PATTERN_WHITELIST)
         key = RESULT_SHEET_ATTRS[key.to_sym]
-        next if result.keys.include?(key) || key.blank?
-        value = value.scan(/\d*/)[0] if key == :age
+        next if result.keys.include?(key) || key.blank? || value.blank?
+        value = value&.strip&.scan(/\d*/)[0] if key == :age
         result.merge!("#{key}": value&.strip&.downcase)
       end
     end
