@@ -2,7 +2,7 @@
 
 UNITS_PATTERNS = /x10\^6\/uL|g\/dL|\%|fL|pg|x10\^3\/µL|UI\/L|mg\/d|U\/L|mmol\/L|ml|ml\/min|kg|mts|mts2|ml\/mi\/1.73|mg\/kg\/dia|mg\/24h|POR CAMPO|pH|U.E.\/dl|NEGATIVO|POSITIVO|\+/
 LINE_EXCLUTION = /En el limite de nivel|Conveniente|para diabetes|Conveniente:|Elevado:|\d/
-TESTS_PATTERNS = /albumina-en-suero|biometria-hematica|quimica-clinica|inmologia|quimica-de-\d-elementos/
+TESTS_PATTERNS = /albumina-en-suero|biometria-hematica|quimica-clinica|proteinas-en-orina-de-24-horas|inmologia|quimica-de-\d-elementos/
 METAS_PATTERNS = /paciente|sexo|fecha|dirigido|doctor/i
 
 class ResultSheetProcessor
@@ -35,8 +35,8 @@ class ResultSheetProcessor
     lines = {study_lines: [], metadata_lines: []}
     File.open(file, "rb") do |io|
       reader = PDF::Reader.new(io)
+      test = ''
       reader.pages.each do |page|
-        test = ''
         page.text.split("\n").each do |line|
           if line.parameterize.match(TESTS_PATTERNS)
            test = line.parameterize
