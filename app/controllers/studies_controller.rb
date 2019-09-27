@@ -4,6 +4,10 @@ class StudiesController < ApplicationController
   def index
     if params[:study_group]
       @studies = current_user.studies.by_group(params[:study_group])
+    elsif params[:study_name]
+      @studies = current_user.studies.by_name(params[:study_name])
+    elsif params[:search].present? && params[:search][:search] != ''
+      @studies = current_user.studies.search_by_name(params[:search][:search])
     end
   end
 

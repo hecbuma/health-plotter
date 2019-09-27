@@ -6,16 +6,16 @@
   %table.table.is-fullwidth.is-striped.is-narrow.is-hoverable
     %thead
       %tr
-        %th{:scope => "col"} Name
-        %th{:scope => "col"} Result
-        %th{:scope => "col"} Actions
+        %th Name
+        %th.has-text-centered Result
+        %th.has-text-centered Actions
     %tbody
       - @result_sheet.studies.each do |study|
         %tr
           %td= study.name
-          %td.has-text-danger= study.result
-          %td
-            = link_to 'Edit', edit_study_path(study), class: 'button is-link'
-            = link_to 'delete', study_path(study), method: :delete, class: 'button is-danger'
+          %td.has-text-danger.has-text-centered= study.result
+          %td.has-text-centered
+            = link_to 'Edit', edit_study_path(study), class: 'button is-rounded is-outlined is-link'
+            = link_to 'delete', study_path(study), method: :delete, class: 'button is-rounded is-outlined is-danger'
       - end if @result_sheet.studies
   %div

@@ -3,7 +3,7 @@
     %nav.navbar.has-background-light{"aria-label" => "main navigation", :role => "navigation"}
       .navbar-brand
         %p.has-text-white= link_to image_tag('logo-name.png',class: 'header-icon'), root_path
-      #navbarBasicExample.navbar-menu
+      .navbar-menu.is-active
         .navbar-end
           .navbar-item
             = link_to image_tag('loupe.svg'), dashboard_path, class: 'image is-32x32'

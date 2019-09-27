@@ -1,20 +1,20 @@
 .container.container-margin
   %p.title.is-3.has-text-link Result Sheets
   %table.table.is-fullwidth.is-striped.is-narrow.is-hoverable
-    %thead
-      %tr
-        %th{:scope => "col"} #
-        %th{:scope => "col"} Date
-        %th{:scope => "col"} Doctor
-        %th{:scope => "col"} Actions
+    %thead	
+      %tr	
+        %th.has-text-centered  #
+        %th.has-text-centered	 Date
+        %th.has-text-centered	 Doctor
+        %th.has-text-centered	 Actions
     %tbody
       - @result_sheets.each do |sheet|
         %tr
-          %th{:scope => "row"}= sheet.id
-          %td= sheet.date
-          %td= sheet.doctor
-          %td
-            = link_to 'Show' , result_sheet_path(sheet), class: 'button is-link'
-            = link_to 'Delete', result_sheet_path(sheet), method: :delete, class: 'button is-danger'
+          %th.has-text-centered= sheet.id
+          %td.has-text-centered= sheet.date
+          %td.has-text-centered= sheet.doctor
+          %td.has-text-centered	
+            = link_to 'Show' , result_sheet_path(sheet), class: 'button is-rounded is-link is-outlined'
+            = link_to 'Delete', result_sheet_path(sheet), method: :delete, class: 'button is-rounded is-outlined is-danger'
       - end if @result_sheets.present?
-  = link_to 'New', new_result_sheet_path, class: 'button is-link'
+  = link_to 'New', new_result_sheet_path, class: 'button is-rounded is-link'

@@ -1,18 +1,18 @@
 .container.container-margin
   %p.title.is-3.has-text-link General Results
   .container
-    %p.has-text-link Search type of Study
     .search.box
       .field
         .control
-          = form_for :search, url: root_path, method: :get do |f|
+          = form_for :search, url: dashboard_path, method: :get do |f|
             = f.text_field :search, label: false, placeholder: 'Search', class: 'input is-link is-rounded'
-            = f.submit 'Search', class:'button is-link is-rounded'
+            .custom-search
+              = f.submit 'Search', class:'button is-link is-rounded'
   .field.is-grouped.box.is-grouped-multiline
     - if @general_studies.blank?
       %p No results
     - else
-      - names_uniq(@general_studies).each do |study_group|
+      - names_group_uniq(@general_studies).each do |study_group|
         .control
           .tags.has-addons
             = link_to study_group, studies_path(study_group: study_group), class: "tag is-rounded #{(random_color)}"
