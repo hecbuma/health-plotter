@@ -18,4 +18,8 @@ module HealthPlotter
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
   end
+
+  Raven.configure do |config|
+    config.dsn = 'https://b9e3c4b17e0f4d56a6071355bf1db735:c64ba21505aa4f4aaa8fea2a695526be@sentry.io/1764305'
+  end
 end
