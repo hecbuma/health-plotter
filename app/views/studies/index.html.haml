@@ -1,5 +1,5 @@
 .container.container-margin
-  - if params[:study_group] || params[:search]
+  - if params[:study_group] || (params[:search] && params[:search][:search].present?)
     %br/
     %p.title.is-3.has-text-link
       = @studies.first.group.capitalize
@@ -10,7 +10,7 @@
         .field
           .control
             = form_for :search, url: studies_path, method: :get do |f|
-              = f.text_field :search, label: false, placeholder: 'Search', class: 'input is-link is-rounded'
+              = f.text_field :search, label: false, placeholder: 'Search', class: 'input is-link is-rounded', required: true
               .custom-search
               = f.submit 'Search', class:'button is-link is-rounded'
     %table.table.is-fullwidth.is-striped.is-narrow.is-hoverable
@@ -24,14 +24,14 @@
             %td= link_to study.name, studies_path(study_name: study.name)
             %td.has-text-danger.has-text-centered= study.result
     
-  - else
+  - elsif params[:study_name]
     = link_to 'Back', :back, class: 'button is-danger is-outlined'
     %br/
     %p.title.is-3.has-text-link
       = @studies.first.name.capitalize
       Results
 
-    = area_chart results(@studies), download: {filename: "#{@studies.first.name}", background: "#ffffff"}, title: "#{@studies.first.group} results"
+    = area_chart results(@studies), download: {filename: "#{@studies.first.name}", background: "#ffffff"}, title: "#{@studies.first.name} results"
 
     %table.table.is-fullwidth.is-striped.is-narrow.is-hoverable
       %thead
@@ -43,3 +43,9 @@
           %tr
             %td= study.result_sheet.date
             %td.has-text-danger.has-text-centered= study.result
+  - else
+    = link_to 'Back', :back, class: 'button is-danger is-outlined'
+    %br/
+    %p.title.is-3.has-text-link
+      = 'No results'
+
