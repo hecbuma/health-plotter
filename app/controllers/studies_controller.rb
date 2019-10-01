@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class StudiesController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     if params[:study_group]
       @studies = current_user.studies.by_group(params[:study_group])
