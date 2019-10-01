@@ -2,7 +2,8 @@
 
 class StudiesController < ApplicationController
   before_action :authenticate_user!
-  
+
+  # rubocop:disable Metrics/AbcSize
   def index
     if params[:study_group]
       @studies = current_user.studies.by_group(params[:study_group])
@@ -12,6 +13,7 @@ class StudiesController < ApplicationController
       @studies = current_user.studies.search_by_name(params[:search][:search])
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def edit
     @study = current_user.studies.find(params[:id])
