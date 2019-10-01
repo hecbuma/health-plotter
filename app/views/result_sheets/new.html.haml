@@ -3,5 +3,5 @@
   = form_with(model: @result_sheet, local: true) do |f|
     .field
       = f.label :document
-      = f.file_field :document, required: true, class: 'is-right is-link box button'
-    = f.submit 'Upload your result sheet', class:'button is-link'
+      = f.file_field :document, required: true, class: 'is-right is-link box'
+    = f.submit 'Create', class:'button is-rounded is-link'

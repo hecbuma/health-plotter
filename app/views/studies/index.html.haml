@@ -1,17 +1,45 @@
 .container.container-margin
-  = link_to 'Back', :back, class: 'button is-danger is-outlined'
-  %br/
-  %p.title.is-3.has-text-link
-    = @studies.first.name.capitalize
-    Results
-  = area_chart results(@studies), download: {filename: "#{@studies.first.name}", background: "#ffffff"}, title: "#{@studies.first.name.capitalize} results"
-  %table.table.is-fullwidth.is-striped.is-narrow.is-hoverable
-    %thead
-      %tr
-        %th{:scope => "col"} Date
-        %th{:scope => "col"} Result
-    %tbody
-      - @studies.each do |study|
+  - if params[:study_group] || params[:search]
+    %br/
+    %p.title.is-3.has-text-link
+      = @studies.first.group.capitalize
+      Results
+    .container
+      %p.has-text-link Search type of Study
+      .search.box
+        .field
+          .control
+            = form_for :search, url: studies_path, method: :get do |f|
+              = f.text_field :search, label: false, placeholder: 'Search', class: 'input is-link is-rounded'
+              .custom-search
+              = f.submit 'Search', class:'button is-link is-rounded'
+    %table.table.is-fullwidth.is-striped.is-narrow.is-hoverable
+      %thead
         %tr
-          %td= study.result_sheet.date
-          %td.has-text-danger= study.result
+          %th Name
+          %th.has-text-centered Result
+      %tbody
+        - @studies.each do |study|
+          %tr
+            %td= link_to study.name, studies_path(study_name: study.name)
+            %td.has-text-danger.has-text-centered= study.result
+    
+  - else
+    = link_to 'Back', :back, class: 'button is-danger is-outlined'
+    %br/
+    %p.title.is-3.has-text-link
+      = @studies.first.name.capitalize
+      Results
+
+    = area_chart results(@studies), download: {filename: "#{@studies.first.name}", background: "#ffffff"}, title: "#{@studies.first.group} results"
+
+    %table.table.is-fullwidth.is-striped.is-narrow.is-hoverable
+      %thead
+        %tr
+          %th Date
+          %th.has-text-centered Result
+      %tbody
+        - @studies.each do |study|
+          %tr
+            %td= study.result_sheet.date
+            %td.has-text-danger.has-text-centered= study.result
