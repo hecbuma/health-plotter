@@ -1,0 +1,8 @@
+test:
+  adapter: postgresql
+  database: health-plotter_test
+  encoding: unicode
+  host: <%= ENV['DB_HOST'] %>
+  password: postgres
+  pool: 5
+  username: postgres
