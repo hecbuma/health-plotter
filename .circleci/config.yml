@@ -40,6 +40,10 @@ jobs:
           name: install dependencies
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - run:
+          name: Yarn
+          command: |
+            yarn install --check-files
 
       - save_cache:
           paths:
