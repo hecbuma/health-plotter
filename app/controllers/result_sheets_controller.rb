@@ -18,7 +18,7 @@ class ResultSheetsController < ApplicationController
     if @result_sheet.save
       ResultSheetProcessor.parse_file_later(@result_sheet)
 
-      flash[:notice] = 'Result Sheet was succesfully create'
+      flash[:notice] = 'Result Sheet was succesfully create - We will send you an email once your results are ready'
       render :show
     else
       flash.now[:alert] = 'Please check the inputs'
