@@ -18,6 +18,7 @@ AllCops:
     - 'config/**/*'
     - 'bin/**/*'
     - 'test/**/*'
+    - 'app/services/*.rb'
 Metrics/AbcSize:
   Max: 18
 
