@@ -3,11 +3,13 @@ require 'test_helper'
 class ResultSheetsControllerTest < ActionDispatch::IntegrationTest
   test 'signed user can create new result sheet' do
     user = users(:registered_user)
-    params = { result_sheet: { doctor: 'example', document: Rack::Test::UploadedFile.new(File.join(Rails.root, 'test', 'fixtures', 'files', 'document.txt')) } }
+    params = { result_sheet: {document: Rack::Test::UploadedFile.new(File.join(Rails.root, 'test', 'fixtures', 'files', 'LAB-SEP.pdf')) } }
     sign_in user
-
-    post result_sheets_path(), params: params
     
+    assert_difference 'ResultSheet.count', 1 do
+      post result_sheets_path(), params: params
+    end
+
     assert_response :success
   end
 
@@ -15,7 +17,9 @@ class ResultSheetsControllerTest < ActionDispatch::IntegrationTest
     user = users(:registered_user)
     sign_in user
 
-    delete result_sheet_path(user.result_sheets.last)
+    assert_difference 'ResultSheet.count', -1 do
+      delete result_sheet_path(user.result_sheets.last)
+    end
 
     assert_redirected_to result_sheets_path
   end

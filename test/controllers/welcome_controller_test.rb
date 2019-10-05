@@ -1,18 +1,18 @@
 require 'test_helper'
 
 class WelcomeControllerTest < ActionDispatch::IntegrationTest
-  test 'Signed user can visit welcome page' do
-    user = users(:user_without_results)
-    sign_in user
-
-    assert_current_path = root_path
+  test 'no logged user can visit welcome page' do
+    get root_path
+   
+    assert :succes
   end
 
-  test 'Signed user can see information of last sheet data' do
+  test 'Signed user is redirected to  dashboard' do
     user = users(:registered_user)
-    result_sheet = result_sheets(:one)
     sign_in user
 
-    assert_current_path = root_path
+    get root_path
+
+    assert_redirected_to dashboard_path
   end
 end
