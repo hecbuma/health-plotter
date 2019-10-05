@@ -18,7 +18,7 @@ class  LoginTest < ApplicationSystemTestCase
     fill_in 'Password', with: 'Password1'
     click_on 'Log in'
 
-    assert_current_path root_path
+    assert_current_path dashboard_path
 
     visit new_user_session_path
 
@@ -35,7 +35,7 @@ class  LoginTest < ApplicationSystemTestCase
     click_on 'Log in'
 
     refute_current_path new_user_session_path
-    assert_current_path root_path
+    assert_current_path dashboard_path
   end
 
   test 'show errors when guest user does not enter valid email' do
