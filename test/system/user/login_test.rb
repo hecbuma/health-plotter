@@ -18,7 +18,7 @@ class  LoginTest < ApplicationSystemTestCase
     fill_in 'Password', with: 'Password1'
     click_on 'Log in'
 
-    assert_current_path root_path
+    assert_current_path dashboard_path
 
     visit new_user_session_path
 
