@@ -1,0 +1,46 @@
+version: '3.1'
+
+services:
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+
+  web:
+    build: .     
+    ports:
+      - 3000:3000 
+    depends_on:
+      - db    
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: postgres://homestead:secret@db:5432/health-plotter_test
+      YARN_INTEGRITY_ENABLED: "false"
+    volumes:
+      - app-volume:/usr/src/app   
+    command: bundle exec rails s -p 3000 -b '0.0.0.0' 
+    
+  webpacker:
+    build: .
+    command: ./bin/webpack-dev-server
+    volumes:
+      - app-volume:/usr/src/app
+    ports:
+      - '3035:3035'
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_USER: homestead
+      POSTGRES_DB: health-plotter_test
+    ports:
+      - 5432:5432
+
+volumes:
+     app-volume: 
